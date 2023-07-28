@@ -1,0 +1,41 @@
+<%- include('./components/header') %>
+<title><%= title %></title>
+
+<div id="root">
+    <div class="App">
+        <div class="todolist">
+            <div class="title">
+                <h1><a href="/">TODO APP</a> </h1>
+            </div>
+
+            <form action="create" method="post" class="addTask">
+                <input
+                    type="text"
+                    name="text"
+                    placeholder="Add a task........"
+                />
+                <button  class='addtask-btn'>
+                    Add Task
+                </button>
+            </form>
+            <div class="lists">
+                <% for(var i=0; i < todos.length; i++) {%>
+                    <div class="list <%= todos[i].complete ? 'completed' : '' %>">
+                        <p><%= todos[i].text %></p>
+                        <div class="span-btns">
+                            <form action="/update-complete" method="post">
+                                <button type="submit" style=<%= todos[i].complete ? 'display:none' : 'display:block' %> name="id" value="<%= todos[i].id %>" >✓</button>
+                            </form>
+                            <form action="/delete" method="post" >
+                                <button type="submit" class="delete-btn" name="id" value="<%= todos[i].id %>">X</button>
+                            </form>
+                        </div>
+                    </div>
+                 <% } %>
+            </div>
+        </div>
+    <Foobar />
+</div>
+</div>
+
+<%- include('./components/footer') %>
